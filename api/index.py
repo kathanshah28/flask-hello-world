@@ -4,8 +4,13 @@ import os
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
+import joblib
 
 app = Flask(__name__)
+
+# Absolute path to model.pkl
+MODEL_PATH = os.path.join(os.path.dirname(__file__), '..', 'model', 'model.pkl')
+model = joblib.load(MODEL_PATH)
 
 @app.route('/predict', methods=["POST"])
 def predict():
